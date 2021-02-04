@@ -12,6 +12,6 @@ else:
         print ("HEELS")
     if number % 2 == 0: 
         print ("TAR") 
-if not number % 2 == 0 and not number % 7 == 0:
-    print ("Carolina")
+    if not number % 2 == 0 and not number % 7 == 0:
+        print ("CAROLINA")
 
