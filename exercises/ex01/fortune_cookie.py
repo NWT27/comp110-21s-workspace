@@ -12,7 +12,7 @@ __author__ = "730400848"
 from random import randint
 
 
-# Begin your solution here...
+
 print ("Your fortune cookie says...")
 
 from random import randint
