@@ -15,16 +15,18 @@ from random import randint
 # Begin your solution here...
 print ("Your fortune cookie says...")
 
+from random import randint
+
 fortune: int=randint(0,40)
 
-if fortune <=20
-    if fortune <=10
+if fortune <= 20:
+    if fortune <= 10:
         print ("You a real one.")
     else:
         print ("Somebody new will enjoy your presence today.")
-if fortune <=40
-    if fortune <=30
-        print ("Your current path will lead to personal glory")
+else:
+    if fortune <= 30:
+        print ("Your current path will lead to personal glory.")
     else:
         print ("Some table is about to turn.")
-print ("Now, go spread good vibes")
+print ("Now, go spread good vibes!")
