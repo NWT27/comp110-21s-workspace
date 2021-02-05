@@ -26,7 +26,7 @@ today: datetime = datetime.today()
 
 population_vaccinated: int = int(population - (population - (int(doses_administered / 2))))
 people_needing: int = int(((targeted_percentage / 100) * population) - population_vaccinated)
-days_needed: int = int(people_needing / (doses_per_day / 2))
+days_needed: int = round(people_needing / (doses_per_day / 2))
 
 timedelta: timedelta = timedelta(days_needed)
 target_date: datetime = today + timedelta
