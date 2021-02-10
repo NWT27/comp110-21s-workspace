@@ -11,22 +11,18 @@ __author__ = "730400848"
 # It will evaluate to an int value >= 1 and <= 100. 
 from random import randint
 
+print("Your fortune cookie says...")
 
-
-print ("Your fortune cookie says...")
-
-from random import randint
-
-fortune: int=randint(0,40)
+fortune: int = randint(0, 40)
 
 if fortune <= 20:
     if fortune <= 10:
-        print ("You a real one.")
+        print("You a real one.")
     else:
-        print ("Somebody new will enjoy your presence today.")
+        print("Somebody new will enjoy your presence today.")
 else:
     if fortune <= 30:
-        print ("Your current path will lead to personal glory.")
+        print("Your current path will lead to personal glory.")
     else:
-        print ("Some table is about to turn.")
-print ("Now, go spread good vibes!")
+        print("Some table is about to turn.")
+print("Now, go spread positive vibes!")
