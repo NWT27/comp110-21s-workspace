@@ -79,7 +79,7 @@ def path_choice() -> None:
 
 def football() -> int:
     """The physical football game of the adventure."""
-    print(f"So, {player} you have chosen football. Good choice. Let me explain the rules")
+    print(f"So, PLAYER you have chosen football. Good choice. Let me explain the rules")
     print(f"For each 5 yards you gain, you will get an additional point towards your adventure score.\nAnd, if you happen to score a touchdown, you'll get 6 point.")
     print(f"Special teams are for the wierdos of the world, so no extra points nor kickoffs.\nThe ball will always start on the twenty five.")
     input("*Press Enter to Continue.*")
@@ -88,7 +88,7 @@ def football() -> int:
     input("*Press Enter to Continue*")
     print("Next, we got the Ace's.\n They are the opposites of the runners.\nGreat both at and against passing while being mirror images of themselves on the grounds")
     input("*Press Enter to Continue*")
-    team_choice: int = int(input(f"So what will it be for you {player}. Team 1: the Runners or Team 2: The Aces?\n1 or 2: "))
+    team_choice: int = int(input(f"So what will it be for you PLAYER. Team 1: the Runners or Team 2: The Aces?\n1 or 2: "))
     while int(team_choice) > 2 or int(team_choice) < 1:
             team_choice: int = int(input("Well, I'm afraid I am going to need to ask you again. And be precise this time.\nWill it be team 1: the Runners or team 2: The Aces?\n 1 or 2: "))
     if team_choice == 1:
@@ -105,21 +105,11 @@ def football() -> int:
     input("You ready to ball out?: ")
     print("Of course you are!!!")
     """Defining the stats for each team"""
-    aces_completion_rate: int = .08
-    aces_passD: int = .025
-    aces_rushing_success: int = .04
-    aces_rushD: int = .005
-    aces_homerun_rate: int = .002
-    runners_completion_rate: int = .045
-    runners_passD: int = .005
-    runners_rushing_success: int = .08
-    runners_rushD: int = .025
-    runners_homerun_rate: int = .001    
+    print("Seeing as though it is more exiciting for a game consisting of two drives, you start on offense")
+    input("*Press Enter to Continue*")
     max_yard: int = 75
     yard_gain = 0
     iteration: int = 1
-    print("Seeing as though it is more exiciting for a game consisting of two drives, you start on offense")
-    input("*Press Enter to Continue*")
     while abs(yard_gain) < max_yard and iteration <= 4:
         offense_play_choice: str = input("What is your play call.\nPass or Run: ")
         offense_play_choice: str = offense_play_choice.lower()
@@ -130,6 +120,16 @@ def football() -> int:
         threshold_5yard_pass: int = 30
         threshold_incomplete_pass: int = 10
         yard_on_play: int = 0
+        aces_completion_rate: int = .08
+        aces_passD: int = .025
+        aces_rushing_success: int = .04
+        aces_rushD: int = .005
+        aces_homerun_rate: int = .001
+        runners_completion_rate: int = .045
+        runners_passD: int = .005
+        runners_rushing_success: int = .08
+        runners_rushD: int = .025
+        runners_homerun_rate: int = .002    
         global points
         if offense_play_choice == ord("p"):
             print("pee")
@@ -144,7 +144,7 @@ def football() -> int:
                 if aces_threshold - runners_passD_tresh > threshold_incomplete_pass:
                     print("Incomplete pass.")
                     iteration += 1
-                    print(f"Down number {i}")
+                    print(f"Down number {iteration}")
                 if aces_threshold - runners_passD_tresh > threshold_5yard_pass:
                     yard_gain += 5
                     if yard_gain >= max_yard:
@@ -154,8 +154,8 @@ def football() -> int:
                         print("5 yard gain!")
                         points += 1
                         iteration += 1
-                        print(f"Down number {i}")
-                if aces_threshold - runners_tresh > threshold_10yard_pass:
+                        print(f"Down number {iteration}")
+                if aces_threshold - runners_passD_tresh > threshold_10yard_pass:
                     yard_gain += 10
                     yard_on_play = 10
                     if yard_gain >= max_yard:
@@ -165,7 +165,7 @@ def football() -> int:
                         print("10 yard gain!")
                         iteration += 1
                         point += 2
-                        rint(f"Down number {i}")
+                        rint(f"Down number {iteration}")
                 if aces_threshold - runners_passD_tresh > threshold_20yard_pass:
                     yardage_gain += 20
                     if yard_gain >= max_yard:
@@ -175,14 +175,13 @@ def football() -> int:
                         print("20 yard gain!")
                         points += 4
                         iteration += 1
-                        print(f"Down number {i}")
+                        print(f"Down number {iteration}")
                 if aces_threshold - runners_passD_tresh > threshold_homerun_pass:
                     yardage_gain += 100
                     print("Touchdown!")
                     points += 6
                     iteration += 1
-                    print(f"Down number {i}")
-        if offense_play_choice == ord("r"):
+                    print(f"Down number {iteration}")
                 
 
 
