@@ -135,14 +135,16 @@ def football() -> int:
         pass_result_rng: int = randint(0,100)
         defense_success: int = randint(0,100)
         plays_before_first: list[int] = []
+        plays_before_first.append(yard_on_play)
         iteration: int = 1
-        def firstdown() -> int:
+        def firstdown(iterat: iteration) -> int:
             """A first down function."""
             if sum(plays_before_first) >= 10:
                 plays_before_first.clear()
-                iteration = 1
-                return iteration
-            return None
+                iterat = 1
+                return iterat
+            iterat += 1
+            return iterat
         global points
         if offense_play_choice == ord("p"):
             if team_choice == "the Aces":
@@ -154,9 +156,7 @@ def football() -> int:
                     yard_gain: int = -200
                 if pass_offense_AvR > threshold_incomplete_pass and pass_offense_AvR <= threshold_5yard_pass:
                     print("Incomplete pass.")
-                    iteration += 1
-                    firstdown()
-                    print(f"Down number {iteration}")
+                    print(f"Down number {firstdown(iteration)}")
                 if pass_offense_AvR > threshold_5yard_pass and pass_offense_AvR <= threshold_10yard_pass:
                     yard_gain += 5
                     if yard_gain >= max_yard:
@@ -165,9 +165,7 @@ def football() -> int:
                     else: 
                         print("5 yard gain!")
                         points += yard_point
-                        iteration += 1
-                        firstdown()
-                        print(f"Down number {iteration}")
+                        print(f"Down number {firstdown(iteration)}")
                 if pass_offense_AvR > threshold_10yard_pass and pass_offense_AvR <= threshold_20yard_pass:
                     yard_gain += 10
                     yard_on_play = 10
@@ -176,10 +174,8 @@ def football() -> int:
                         points += 6 + yard_point_touchdown
                     else:
                         print("10 yard gain!")
-                        iteration += 1
                         points += yard_point
-                        firstdown()
-                        print(f"Down number {iteration}")
+                        print(f"Down number {firstdown(iteration)}")
                 if pass_offense_AvR > threshold_20yard_pass and pass_offense_AvR <= threshold_homerun_pass:
                     yard_gain += 20
                     if yard_gain >= max_yard:
@@ -188,9 +184,7 @@ def football() -> int:
                     else: 
                         print("20 yard gain!")
                         points += yard_point
-                        iteration += 1
-                        firstdown()
-                        print(f"Down number {iteration}")
+                        print(f"Down number {firstdown(iteration)}")
                 if aces_threshold - runners_passD_tresh > threshold_homerun_pass:
                     yard_gain = (max_yard - yard_gain)
                     yard_on_play = yard_gain
