@@ -129,61 +129,75 @@ def football() -> int:
         runners_passD: int = .005
         runners_rushing_success: int = .08
         runners_rushD: int = .025
-        runners_homerun_rate: int = .002    
+        runners_homerun_rate: int = .002
+        yard_point_touchdown: int = (yard_on_play - (yard_gain - max_yard)) // 5
+        yard_point: int = (yard_on_play // 5)
+        pass_result_rng: int = randint(0,100)
+        defense_success: int = randint(0,100)
+        plays_before_first: list[int] = []
+        iteration: int = 1
+        def firstdown() -> int:
+            """A first down function."""
+            if sum(plays_before_first) >= 10:
+                plays_before_first.clear()
+                iteration = 1
+                return iteration
+            return None
         global points
         if offense_play_choice == ord("p"):
-            print("pee")
-            pass_result_rng: int = randint(0,100)
-            defense_success: int = randint(0,100)
             if team_choice == "the Aces":
                 aces_threshold: int = (pass_result_rng + (pass_result_rng * aces_completion_rate))
                 runners_passD_tresh: int = (defense_success * runners_passD)
-                if aces_threshold - runners_passD_tresh < threshold_incomplete_pass:
+                pass_offense_AvR: int = aces_threshold - runners_passD_tresh
+                if pass_offense_AvR <= threshold_incomplete_pass:
                     print("Interception!")
                     yard_gain: int = -200
-                if aces_threshold - runners_passD_tresh > threshold_incomplete_pass:
+                if pass_offense_AvR > threshold_incomplete_pass and pass_offense_AvR <= threshold_5yard_pass:
                     print("Incomplete pass.")
                     iteration += 1
+                    firstdown()
                     print(f"Down number {iteration}")
-                if aces_threshold - runners_passD_tresh > threshold_5yard_pass:
+                if pass_offense_AvR > threshold_5yard_pass and pass_offense_AvR <= threshold_10yard_pass:
                     yard_gain += 5
                     if yard_gain >= max_yard:
                         print("Touchdown")
-                        points += 7
+                        points += 6 + yard_point_touchdown
                     else: 
                         print("5 yard gain!")
-                        points += 1
+                        points += yard_point
                         iteration += 1
+                        firstdown()
                         print(f"Down number {iteration}")
-                if aces_threshold - runners_passD_tresh > threshold_10yard_pass:
+                if pass_offense_AvR > threshold_10yard_pass and pass_offense_AvR <= threshold_20yard_pass:
                     yard_gain += 10
                     yard_on_play = 10
                     if yard_gain >= max_yard:
                         print("Touchdown!")
-                        points += 7
+                        points += 6 + yard_point_touchdown
                     else:
                         print("10 yard gain!")
                         iteration += 1
-                        point += 2
-                        rint(f"Down number {iteration}")
-                if aces_threshold - runners_passD_tresh > threshold_20yard_pass:
-                    yardage_gain += 20
+                        points += yard_point
+                        firstdown()
+                        print(f"Down number {iteration}")
+                if pass_offense_AvR > threshold_20yard_pass and pass_offense_AvR <= threshold_homerun_pass:
+                    yard_gain += 20
                     if yard_gain >= max_yard:
                         print("Touchdown!")
-                        points += 7
+                        points += 6 + yard_point_touchdown
                     else: 
                         print("20 yard gain!")
-                        points += 4
+                        points += yard_point
                         iteration += 1
+                        firstdown()
                         print(f"Down number {iteration}")
                 if aces_threshold - runners_passD_tresh > threshold_homerun_pass:
-                    yardage_gain += 100
+                    yard_gain = (max_yard - yard_gain)
+                    yard_on_play = yard_gain
                     print("Touchdown!")
-                    points += 6
-                    iteration += 1
-                    print(f"Down number {iteration}")
+                    points += 6 + yard_point_touchdown
+                    iteration = 5
                 
-
 
 if __name__ == "__main__":
     main()
