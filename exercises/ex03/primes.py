@@ -9,12 +9,11 @@ def main() -> None:
     print(is_prime(20))
     print(is_prime(2))
     print(is_prime(3))
+    print(list_primes(3, 7))
+    print(list_primes(-1, 5))
     # ex. print(is_prime(5)), print(list_primes(10, 20))
     print(is_prime(5))
-    print(list_primes(3, 7))
     print(list_primes(10, 20))
-    print(list_primes(25, 28))
-    print(list_primes(-1, 5))
 
 
 def is_prime(number: int) -> bool:
